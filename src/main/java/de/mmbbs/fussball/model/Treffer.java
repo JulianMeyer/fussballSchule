@@ -1,13 +1,9 @@
 package de.mmbbs.fussball.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
+import javax.persistence.*;
 
 @Entity
+@Table(name = "TREFFER")
 public class Treffer extends Spieler {
 
     @Id
@@ -18,6 +14,7 @@ public class Treffer extends Spieler {
 
     @Column(name = "MINUTE")
     int minute;
+
     @Column(name = "ISEIGENTOR")
     boolean isEigentor;
 }

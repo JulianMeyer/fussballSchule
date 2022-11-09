@@ -1,22 +1,19 @@
 package de.mmbbs.fussball.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
+import javax.persistence.*;
 
 @Entity
+@Table(name = "VERTRAG")
 public class Vertrag {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "mannschaft_seq_gen")
-    @SequenceGenerator(name = "mannschaft_seq_gen", sequenceName = "mannschaft_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "vertrag_seq_gen")
+    @SequenceGenerator(name = "vertrag_seq_gen", sequenceName = "vertrag_seq", allocationSize = 1)
     @Column(name = "ID", nullable = false, unique = true)
     int id;
 
-    @Column(name = "SPIELER")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "spieler_id")
     Spieler spieler;
 
     @Column(name = "GEHALT")

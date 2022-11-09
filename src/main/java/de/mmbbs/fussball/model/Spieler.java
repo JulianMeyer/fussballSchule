@@ -2,15 +2,10 @@ package de.mmbbs.fussball.model;
 
 import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.SequenceGenerator;
+import javax.persistence.*;
 
 @Entity
+@Table(name = "SPIELER")
 public class Spieler extends Vertrag {
 
     @Id
@@ -19,13 +14,16 @@ public class Spieler extends Vertrag {
     @Column(name = "ID", nullable = false, unique = true)
     int id;
 
-    @Column(name = "VERTRAG")
+    @Column(name = "NAME")
     String name;
-    @Column(name = "VERTRAG")
+
+    @Column(name = "TRIKOTNUMMER")
     int trikotnummer;
-    @Column(name = "VERTRAG")
+
+    @Column(name = "POSITION")
     String position;
-    @Column(name = "VERTRAG")
+
+    @Column(name = "ELFMETER_GEHALTEN")
     int elfmeterGehalten;
 
     @OneToMany

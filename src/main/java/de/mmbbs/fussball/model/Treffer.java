@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "TREFFER")
-public class Treffer extends Spieler {
+public class Treffer  {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "mannschaft_seq_gen")
@@ -15,6 +15,6 @@ public class Treffer extends Spieler {
     @Column(name = "MINUTE")
     int minute;
 
-    @Column(name = "ISEIGENTOR")
+    @Column(name = "IS_EIGENTOR")
     boolean isEigentor;
 }

@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.17.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+    <changeSet id="1668357816809-1" author="julim (generated)">
+        <createTable tableName="mannschaft">
+            <column name="id" type="INT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_mannschaft"/>
+            </column>
+            <column name="name" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1668357816809-2" author="julim (generated)">
+        <createTable tableName="mannschaft_vertrag_list">
+            <column name="mannschaft_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="vertrag_list_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="1668357816809-3" author="julim (generated)">
+        <createTable tableName="schiri">
+            <column name="id" type="INT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_schiri"/>
+            </column>
+            <column name="name" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1668357816809-4" author="julim (generated)">
+        <createTable tableName="spieler">
+            <column name="id" type="INT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_spieler"/>
+            </column>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="trikotnummer" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="position" type="VARCHAR(255)"/>
+            <column name="elfmeter_gehalten" type="INT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="1668357816809-5" author="julim (generated)">
+        <createTable tableName="spieler_treffer">
+            <column name="spieler_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="treffer_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="1668357816809-6" author="julim (generated)">
+        <createTable tableName="treffer">
+            <column name="id" type="INT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_treffer"/>
+            </column>
+            <column name="minute" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="is_eigentor" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="1668357816809-7" author="julim (generated)">
+        <addUniqueConstraint columnNames="id" constraintName="uc_mannschaft_id" tableName="mannschaft"/>
+    </changeSet>
+    <changeSet id="1668357816809-8" author="julim (generated)">
+        <addUniqueConstraint columnNames="mannschaft_id, vertrag_list_id"
+                             constraintName="uc_mannschaft_vertrag_list_maidveid" tableName="mannschaft_vertrag_list"/>
+    </changeSet>
+    <changeSet id="1668357816809-9" author="julim (generated)">
+        <addUniqueConstraint columnNames="id" constraintName="uc_schiri_id" tableName="schiri"/>
+    </changeSet>
+    <changeSet id="1668357816809-10" author="julim (generated)">
+        <addUniqueConstraint columnNames="id" constraintName="uc_spieler_id" tableName="spieler"/>
+    </changeSet>
+    <changeSet id="1668357816809-11" author="julim (generated)">
+        <addUniqueConstraint columnNames="spieler_id, treffer_id" constraintName="uc_spieler_treffer_spidtrid"
+                             tableName="spieler_treffer"/>
+    </changeSet>
+    <changeSet id="1668357816809-12" author="julim (generated)">
+        <addUniqueConstraint columnNames="id" constraintName="uc_treffer_id" tableName="treffer"/>
+    </changeSet>
+    <changeSet id="1668357816809-13" author="julim (generated)">
+        <addForeignKeyConstraint baseColumnNames="auswaerts_id" baseTableName="spiel"
+                                 constraintName="FK_SPIEL_ON_AUSWAERTS" referencedColumnNames="id"
+                                 referencedTableName="mannschaft"/>
+    </changeSet>
+    <changeSet id="1668357816809-14" author="julim (generated)">
+        <addForeignKeyConstraint baseColumnNames="heim_id" baseTableName="spiel" constraintName="FK_SPIEL_ON_HEIM"
+                                 referencedColumnNames="id" referencedTableName="mannschaft"/>
+    </changeSet>
+    <changeSet id="1668357816809-15" author="julim (generated)">
+        <addForeignKeyConstraint baseColumnNames="schiri_id" baseTableName="spiel" constraintName="FK_SPIEL_ON_SCHIRI"
+                                 referencedColumnNames="id" referencedTableName="schiri"/>
+    </changeSet>
+    <changeSet id="1668357816809-16" author="julim (generated)">
+        <addForeignKeyConstraint baseColumnNames="spieler_id" baseTableName="vertrag"
+                                 constraintName="FK_VERTRAG_ON_SPIELER" referencedColumnNames="id"
+                                 referencedTableName="spieler"/>
+    </changeSet>
+    <changeSet id="1668357816809-17" author="julim (generated)">
+        <addForeignKeyConstraint baseColumnNames="vertrag" baseTableName="vertrag"
+                                 constraintName="FK_VERTRAG_ON_VERTRAG" referencedColumnNames="id"
+                                 referencedTableName="mannschaft"/>
+    </changeSet>
+    <changeSet id="1668357816809-18" author="julim (generated)">
+        <addForeignKeyConstraint baseColumnNames="mannschaft_id" baseTableName="mannschaft_vertrag_list"
+                                 constraintName="fk_manverlis_on_mannschaft" referencedColumnNames="id"
+                                 referencedTableName="mannschaft"/>
+    </changeSet>
+    <changeSet id="1668357816809-19" author="julim (generated)">
+        <addForeignKeyConstraint baseColumnNames="vertrag_list_id" baseTableName="mannschaft_vertrag_list"
+                                 constraintName="fk_manverlis_on_vertrag" referencedColumnNames="id"
+                                 referencedTableName="vertrag"/>
+    </changeSet>
+    <changeSet id="1668357816809-20" author="julim (generated)">
+        <addForeignKeyConstraint baseColumnNames="spieler_id" baseTableName="spieler_treffer"
+                                 constraintName="fk_spitre_on_spieler" referencedColumnNames="id"
+                                 referencedTableName="spieler"/>
+    </changeSet>
+    <changeSet id="1668357816809-21" author="julim (generated)">
+        <addForeignKeyConstraint baseColumnNames="treffer_id" baseTableName="spieler_treffer"
+                                 constraintName="fk_spitre_on_treffer" referencedColumnNames="id"
+                                 referencedTableName="treffer"/>
+    </changeSet>
+    <changeSet id="1668357816809-22" author="julim (generated)">
+        <dropTable cascadeConstraints="true" tableName="vertrag_treffer"/>
+    </changeSet>
+    <changeSet id="1668357816809-23" author="julim (generated)">
+        <dropTable cascadeConstraints="true" tableName="vertrag_vertrag_list"/>
+    </changeSet>
+    <changeSet id="1668357816809-24" author="julim (generated)">
+        <dropColumn columnName="dtype" tableName="spiel"/>
+
+        <dropColumn columnName="name" tableName="spiel"/>
+    </changeSet>
+    <changeSet id="1668357816809-25" author="julim (generated)">
+        <dropColumn columnName="dtype" tableName="vertrag"/>
+
+        <dropColumn columnName="elfmeter_gehalten" tableName="vertrag"/>
+
+        <dropColumn columnName="is_eigentor" tableName="vertrag"/>
+
+        <dropColumn columnName="minute" tableName="vertrag"/>
+
+        <dropColumn columnName="name" tableName="vertrag"/>
+
+        <dropColumn columnName="position" tableName="vertrag"/>
+
+        <dropColumn columnName="trikotnummer" tableName="vertrag"/>
+    </changeSet>
+
+</databaseChangeLog>

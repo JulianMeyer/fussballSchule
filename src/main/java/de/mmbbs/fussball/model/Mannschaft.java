@@ -18,7 +18,7 @@ import lombok.Setter;
 @Table(name = "MANNSCHAFT")
 @Getter
 @Setter
-public class Mannschaft extends Vertrag {
+public class Mannschaft  {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "mannschaft_seq_gen")

@@ -5,7 +5,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "SCHIRI")
-public class Schiri extends Spiel {
+public class Schiri  {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "mannschaft_seq_gen")

@@ -1,22 +1,14 @@
 package de.mmbbs.fussball.view;
 
 import com.vaadin.flow.component.Tag;
+import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.checkbox.Checkbox;
 import com.vaadin.flow.component.dependency.JsModule;
+import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.littemplate.LitTemplate;
 import com.vaadin.flow.component.template.Id;
 import com.vaadin.flow.component.textfield.NumberField;
 import com.vaadin.flow.router.Route;
-import com.vaadin.flow.component.button.Button;
-import com.vaadin.flow.component.grid.Grid;
-import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
-import com.vaadin.flow.component.orderedlayout.VerticalLayout;
-import com.vaadin.flow.component.textfield.TextField;
-import com.vaadin.flow.data.value.ValueChangeMode;
-import com.vaadin.flow.router.PageTitle;
-import com.vaadin.flow.router.Route;
-import com.vaadin.flow.theme.Theme;
-
 import de.mmbbs.fussball.model.Treffer;
 /**
  * A Designer generated component for the treffer-view template.
@@ -26,7 +18,7 @@ import de.mmbbs.fussball.model.Treffer;
  */
 @Tag("treffer-view")
 @JsModule("./treffer-view.ts")
-@Route(value = "treffer")
+@Route(value = "treffer",layout = MainView.class)
 public class TrefferView extends LitTemplate {
 
     @Id("buttonSpeichern")
@@ -51,10 +43,6 @@ public class TrefferView extends LitTemplate {
     }
 
     private void configureGrid() {
-        daGriddy.addClassNames("contact-grid");
-        daGriddy.setSizeFull();
-        daGriddy.setColumns("firstName", "lastName", "email");
-
 
         daGriddy.addColumn(Treffer::getMinute).setHeader("Minute des Treffers");
         daGriddy.addColumn(Treffer::isEigentor).setHeader("Ist Eigentor?");

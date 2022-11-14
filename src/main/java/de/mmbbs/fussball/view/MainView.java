@@ -1,10 +1,5 @@
 package de.mmbbs.fussball.view;
 
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
@@ -16,9 +11,15 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.HasDynamicTitle;
 import com.vaadin.flow.router.HighlightConditions;
+import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouterLink;
 
-//@Route("")
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+
+@Route("")
 public class MainView extends AppLayout implements HasDynamicTitle {
 
     public static final String MAIN_PAGE_TITLE = "Fussball-Anwendung";
@@ -71,16 +72,17 @@ public class MainView extends AppLayout implements HasDynamicTitle {
             layout.add(component);
         }
 
-        Label powered = new Label("powered by Team Omega");
-        powered.getStyle().set("margin-top", "auto");
+        Label credits = new Label("Erstellt von den Rossmann Azubis");
+        credits.getStyle().set("margin-top", "auto");
 
-        layout.add(powered);
+        layout.add(credits);
         layout.setSizeFull();
         addToDrawer(layout);
     }
 
     protected List<Component> getMenuItems() {
         Map<String, Class<? extends Component>> menuItemsMap = new LinkedHashMap<>();
+        menuItemsMap.put("Startseite",MainView.class);
         menuItemsMap.put("Treffer", TrefferView.class);
 
         return createAllowedRouterLinks(menuItemsMap);

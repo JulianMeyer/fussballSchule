@@ -6,11 +6,10 @@ import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
-import com.vaadin.flow.router.Route;
 import de.mmbbs.fussball.model.Treffer;
 import de.mmbbs.fussball.service.TrefferService;
 
-@Route("")
+//@Route("")
 public class MainView extends VerticalLayout {
     TrefferService trefferService;
 

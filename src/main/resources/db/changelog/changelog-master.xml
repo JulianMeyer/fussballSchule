@@ -8,4 +8,5 @@
     <include file="db/changelog/2022/11/13-01-changelog.xml"/>
     <!--    <include file="/db/changelog/create-Test-table-changelog-1.xml"/>-->
     <include file="db/changelog/2022/11/13-01-changelog.xml"/>
+    <include file="db/changelog/2022/11/14-01-changelog.xml"/>
 </databaseChangeLog>

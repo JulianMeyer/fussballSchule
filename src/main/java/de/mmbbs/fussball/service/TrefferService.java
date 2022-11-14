@@ -12,7 +12,11 @@ public class TrefferService {
         this.trefferRepository = trefferRepository;
     }
 
-    public Treffer getById(int id){
+    public Treffer getById(int id) {
         return trefferRepository.findById(id);
+    }
+
+    public void save(Treffer treffer) {
+        trefferRepository.save(treffer);
     }
 }

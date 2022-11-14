@@ -8,8 +8,7 @@ import javax.persistence.*;
 public class Schiri  {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "mannschaft_seq_gen")
-    @SequenceGenerator(name = "mannschaft_seq_gen", sequenceName = "mannschaft_seq", allocationSize = 1)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "ID", nullable = false, unique = true)
     int id;
 

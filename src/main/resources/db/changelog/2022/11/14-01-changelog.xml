@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.17.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+    <changeSet id="1668434512115-7" author="julim (generated)">
+        <dropSequence sequenceName="mannschaft_seq"/>
+    </changeSet>
+    <changeSet id="1668434512115-8" author="julim (generated)">
+        <dropSequence sequenceName="vertrag_seq"/>
+    </changeSet>
+    <changeSet id="1668434512115-1" author="julim (generated)">
+        <addAutoIncrement columnDataType="int" columnName="id" tableName="mannschaft"/>
+    </changeSet>
+    <changeSet id="1668434512115-2" author="julim (generated)">
+        <addAutoIncrement columnDataType="int" columnName="id" tableName="schiri"/>
+    </changeSet>
+    <changeSet id="1668434512115-3" author="julim (generated)">
+        <addAutoIncrement columnDataType="int" columnName="id" tableName="spiel"/>
+    </changeSet>
+    <changeSet id="1668434512115-4" author="julim (generated)">
+        <addAutoIncrement columnDataType="int" columnName="id" tableName="spieler"/>
+    </changeSet>
+    <changeSet id="1668434512115-5" author="julim (generated)">
+        <addAutoIncrement columnDataType="int" columnName="id" tableName="treffer"/>
+    </changeSet>
+    <changeSet id="1668434512115-6" author="julim (generated)">
+        <addAutoIncrement columnDataType="int" columnName="id" tableName="vertrag"/>
+    </changeSet>
+
+</databaseChangeLog>

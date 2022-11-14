@@ -7,8 +7,7 @@ import javax.persistence.*;
 public class Vertrag {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "vertrag_seq_gen")
-    @SequenceGenerator(name = "vertrag_seq_gen", sequenceName = "vertrag_seq", allocationSize = 1)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "ID", nullable = false, unique = true)
     int id;
 

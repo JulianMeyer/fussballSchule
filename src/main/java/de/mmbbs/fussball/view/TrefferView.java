@@ -1,8 +1,11 @@
 package de.mmbbs.fussball.view;
 
 import com.vaadin.flow.component.Tag;
+import com.vaadin.flow.component.checkbox.Checkbox;
 import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.littemplate.LitTemplate;
+import com.vaadin.flow.component.template.Id;
+import com.vaadin.flow.component.textfield.NumberField;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.grid.Grid;
@@ -13,6 +16,8 @@ import com.vaadin.flow.data.value.ValueChangeMode;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.theme.Theme;
+
+import de.mmbbs.fussball.model.Treffer;
 /**
  * A Designer generated component for the treffer-view template.
  *
@@ -24,6 +29,17 @@ import com.vaadin.flow.theme.Theme;
 @Route(value = "treffer")
 public class TrefferView extends LitTemplate {
 
+    @Id("buttonSpeichern")
+    private Button buttonSpeichern;
+    @Id("buttonHauptseite")
+    private Button buttonHauptseite;
+    @Id("checkboxTreffer")
+    private Checkbox checkboxTreffer;
+    @Id("minute")
+    private NumberField minute;
+    @Id("daGriddy")
+    private Grid<Treffer> daGriddy;
+
     /**
      * Creates a new TrefferView.
      */
@@ -31,22 +47,19 @@ public class TrefferView extends LitTemplate {
         addClassName("treffer-view");
         configureGrid();
 
-        add(getToolbar(), grid);
-
 
     }
 
     private void configureGrid() {
-        grid.addClassNames("contact-grid");
-        grid.setSizeFull();
-        grid.setColumns("firstName", "lastName", "email");
+        daGriddy.addClassNames("contact-grid");
+        daGriddy.setSizeFull();
+        daGriddy.setColumns("firstName", "lastName", "email");
 
 
-        grid.addColumn(contact -> contact.getStatus().getName()).setHeader("Status");
+        daGriddy.addColumn(Treffer::getMinute).setHeader("Minute des Treffers");
+        daGriddy.addColumn(Treffer::isEigentor).setHeader("Ist Eigentor?");
 
-
-        grid.addColumn(contact -> contact.getCompany().getName()).setHeader("Company");
-        grid.getColumns().forEach(col -> col.setAutoWidth(true));
+        daGriddy.getColumns().forEach(col -> col.setAutoWidth(true));
 
 
     }

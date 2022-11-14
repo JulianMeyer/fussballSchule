@@ -1,12 +1,14 @@
 package de.mmbbs.fussball.model;
 
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 
 import javax.persistence.*;
 
 @Entity
 @AllArgsConstructor
 @Table(name = "TREFFER")
+@Getter
 public class Treffer  {
 
     @Id

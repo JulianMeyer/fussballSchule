@@ -23,8 +23,6 @@ public class TrefferView extends LitTemplate {
 
     @Id("buttonSpeichern")
     private Button buttonSpeichern;
-    @Id("buttonHauptseite")
-    private Button buttonHauptseite;
     @Id("checkboxTreffer")
     private Checkbox checkboxTreffer;
     @Id("minute")

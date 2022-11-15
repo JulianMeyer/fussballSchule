@@ -8,6 +8,7 @@ import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.littemplate.LitTemplate;
 import com.vaadin.flow.component.template.Id;
+import com.vaadin.flow.router.Route;
 
 /**
  * A Designer generated component for the spiel-view template.
@@ -17,6 +18,7 @@ import com.vaadin.flow.component.template.Id;
  */
 @Tag("spiel-view")
 @JsModule("./spiel-view.ts")
+@Route(value = "spiel",layout = MainView.class)
 public class SpielView extends LitTemplate {
 
     @Id("daGriddy")

@@ -9,6 +9,7 @@ import com.vaadin.flow.component.littemplate.LitTemplate;
 import com.vaadin.flow.component.template.Id;
 import com.vaadin.flow.component.textfield.NumberField;
 import com.vaadin.flow.component.textfield.TextField;
+import com.vaadin.flow.router.Route;
 
 /**
  * A Designer generated component for the spieler-view template.
@@ -18,6 +19,7 @@ import com.vaadin.flow.component.textfield.TextField;
  */
 @Tag("spieler-view")
 @JsModule("./spieler-view.ts")
+@Route(value = "spieler",layout = MainView.class)
 public class SpielerView extends LitTemplate {
 
     @Id("trikotnummer")

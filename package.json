@@ -114,6 +114,7 @@
     "glob": "7.2.3",
     "mkdirp": "1.0.4",
     "rollup-plugin-brotli": "3.1.0",
+    "strip-css-comments": "5.0.0",
     "transform-ast": "2.4.4",
     "typescript": "4.7.4",
     "vite": "v3.1.0",
@@ -235,6 +236,7 @@
       "glob": "7.2.3",
       "mkdirp": "1.0.4",
       "rollup-plugin-brotli": "3.1.0",
+      "strip-css-comments": "5.0.0",
       "transform-ast": "2.4.4",
       "typescript": "4.7.4",
       "vite": "v3.1.0",
@@ -243,7 +245,7 @@
       "workbox-core": "6.5.0",
       "workbox-precaching": "6.5.0"
     },
-    "hash": "b943b040c4206ef13e51d235d17d3125bf4505b11aca0a9b5555a961a896b9ac"
+    "hash": "2c370bca8e2ab7b4d2c789a42223756b6d3e2c2223c0f1b095ed574fc1b9a688"
   },
   "overrides": {
     "@vaadin/bundles": "$@vaadin/bundles",

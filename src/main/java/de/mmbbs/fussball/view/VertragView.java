@@ -8,6 +8,7 @@ import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.littemplate.LitTemplate;
 import com.vaadin.flow.component.template.Id;
 import com.vaadin.flow.component.textfield.NumberField;
+import com.vaadin.flow.router.Route;
 
 /**
  * A Designer generated component for the vertrag-view template.
@@ -17,6 +18,7 @@ import com.vaadin.flow.component.textfield.NumberField;
  */
 @Tag("vertrag-view")
 @JsModule("./vertrag-view.ts")
+@Route(value = "vertrag",layout = MainView.class)
 public class VertragView extends LitTemplate {
 
     @Id("buttonSpeichern")

@@ -10,17 +10,17 @@ import java.util.List;
 @Table(name = "MANNSCHAFT")
 @Getter
 @Setter
-public class Mannschaft  {
+public class Mannschaft {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID", nullable = false, unique = true)
     int id;
 
     @Column(name = "NAME")
     String name;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER)
     @Column(name = "VERTRAG")
     List<Vertrag> vertragList;
 
@@ -33,7 +33,7 @@ public class Mannschaft  {
 
     }
 
-    public int getVertragAnzahl(){
+    public int getVertragAnzahl() {
         try {
             return vertragList.size();
         } catch (Exception e) {

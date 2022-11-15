@@ -13,7 +13,9 @@ import de.mmbbs.fussball.model.Mannschaft;
 import de.mmbbs.fussball.model.Vertrag;
 import de.mmbbs.fussball.service.DataService;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 /**
  * A Designer generated component for the mannschaft-view template.
@@ -35,15 +37,18 @@ public class MannschaftView extends LitTemplate {
     @Id("buttonSpeichern")
     private Button buttonSpeichern;
     DataService dataService;
-    List<Vertrag> vertragList;
+    List<Vertrag> vertragList = new ArrayList<>();
     @Id("GridVertrag")
-    private Grid gridVertrag;
+    private Grid<Vertrag> gridVertrag;
 
     public MannschaftView(DataService dataService) {
         this.dataService = dataService;
 
         daGriddy.addColumn(Mannschaft::getName).setHeader("Mannschaftsname");
-        daGriddy.addColumn(Mannschaft::getVertragAnzahl).setHeader("Spiler unter Vertrag");
+        daGriddy.addColumn(Mannschaft::getVertragAnzahl).setHeader("Spieler unter Vertrag");
+        gridVertrag.addColumn(vertrag -> vertrag.getSpieler().getName()).setHeader("Spieler");
+        gridVertrag.addColumn(Vertrag::getGehalt).setHeader("Gehalt");
+        gridVertrag.setSelectionMode(Grid.SelectionMode.MULTI);
         init();
         buttonHinzufügen.addClickListener(buttonClickEvent -> vertragHinzufuegen());
         buttonSpeichern.addClickListener(buttonClickEvent -> mannschaftSpeichern());
@@ -68,11 +73,18 @@ public class MannschaftView extends LitTemplate {
     }
 
     private void vertragHinzufuegen() {
-
+        Set<Vertrag> selectedItems = gridVertrag.getSelectedItems();
+        if (selectedItems.isEmpty()) {
+            NotificationManager.notificationFailureAtSaving();
+        } else {
+            vertragList.addAll(selectedItems);
+            NotificationManager.customSuccess("Die Verträge wurde ausgewählt");
+        }
     }
 
     private void init() {
         daGriddy.setItems(dataService.getAllMannschaft());
+        gridVertrag.setItems(dataService.getAllVertrag());
     }
 
 }

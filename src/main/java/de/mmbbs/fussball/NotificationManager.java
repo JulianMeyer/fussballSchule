@@ -12,9 +12,15 @@ public class NotificationManager {
         notification.addThemeVariants(NotificationVariant.LUMO_SUCCESS);
     }
 
-    public static void notificationFailureAtSaving(){
+    public static void notificationFailureAtSaving() {
         Notification notification = Notification
                 .show("Fehler beim Speichern!");
         notification.addThemeVariants(NotificationVariant.LUMO_ERROR);
+    }
+
+    public static void customSuccess(String meldung) {
+        Notification notification = Notification
+                .show(meldung);
+        notification.addThemeVariants(NotificationVariant.LUMO_SUCCESS);
     }
 }

@@ -10,16 +10,17 @@ import com.vaadin.flow.component.littemplate.LitTemplate;
 import com.vaadin.flow.component.template.Id;
 import com.vaadin.flow.router.Route;
 import de.mmbbs.fussball.model.Spiel;
+import de.mmbbs.fussball.service.DataService;
 
 /**
  * A Designer generated component for the spiel-view template.
- *
+ * <p>
  * Designer will add and remove fields with @Id mappings but
  * does not overwrite or otherwise change this file.
  */
 @Tag("spiel-view")
 @JsModule("./spiel-view.ts")
-@Route(value = "spiel",layout = MainView.class)
+@Route(value = "spiel", layout = MainView.class)
 public class SpielView extends LitTemplate {
 
     @Id("daGriddy")
@@ -35,11 +36,14 @@ public class SpielView extends LitTemplate {
     @Id("datepicker")
     private DatePicker datepicker;
 
-    /**
-     * Creates a new SpielView.
-     */
-    public SpielView() {
-        // You can initialise any data required for the connected UI components here.
+    DataService dataService;
+
+    public SpielView(DataService dataService) {
+        this.dataService = dataService;
+        init();
+    }
+
+    private void init() {
     }
 
 }

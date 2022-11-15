@@ -23,7 +23,7 @@ export class SpielView extends LitElement {
   render() {
     return html`
 <vaadin-vertical-layout style="width: 100%; height: 100%; margin: var(--lumo-space-xs); padding: var(--lumo-space-xs);">
- <h2>Vertrag</h2>
+ <h2>Spiel</h2>
  <vaadin-grid id="daGriddy" style="height: 50%;" is-attached multi-sort-priority="prepend"></vaadin-grid>
  <vaadin-vertical-layout style="height: 50%; width: 100%; padding: var(--lumo-space-s);">
   <h2>Anlegen</h2>

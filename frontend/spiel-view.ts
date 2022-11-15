@@ -30,8 +30,8 @@ export class SpielView extends LitElement {
   <vaadin-horizontal-layout style="padding: var(--lumo-space-s); justify-content: space-around; align-items: stretch; width: 100%;" theme="spacing-s">
    <vaadin-date-picker id="datepicker" label="Datum"></vaadin-date-picker>
    <vaadin-combo-box id="comboboxAusw" label="Auswärts-Mannschaft"></vaadin-combo-box>
-   <vaadin-combo-box id="schiribox" label="Schiri"></vaadin-combo-box>
    <vaadin-combo-box id="comboboxHeim" label="Heim-Mannschaft"></vaadin-combo-box>
+   <vaadin-combo-box id="schiribox" label="Schiri"></vaadin-combo-box>
   </vaadin-horizontal-layout>
   <vaadin-horizontal-layout style="width: 100%; justify-content: flex-end;" theme="spacing-xl">
    <vaadin-button id="buttonSpeichern" tabindex="0">

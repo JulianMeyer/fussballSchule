@@ -37,6 +37,8 @@ public class MannschaftView extends LitTemplate {
     private Button buttonSpeichern;
     DataService dataService;
     List<Vertrag> vertragList;
+    @Id("GridVertrag")
+    private Grid gridVertrag;
 
     public MannschaftView(DataService dataService) {
         this.dataService = dataService;

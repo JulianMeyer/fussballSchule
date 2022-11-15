@@ -3,6 +3,7 @@ package de.mmbbs.fussball.view;
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.checkbox.Checkbox;
+import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.littemplate.LitTemplate;
@@ -49,7 +50,8 @@ public class SpielerView extends LitTemplate {
     private Grid<Spieler> daGriddy;
     DataService dataService;
     List<Treffer> trefferList = new ArrayList<>();
-
+    @Id("position")
+    private ComboBox<String> position;
 
     public SpielerView(DataService dataService) {
         this.dataService = dataService;

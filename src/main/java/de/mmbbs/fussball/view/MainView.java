@@ -83,12 +83,12 @@ public class MainView extends AppLayout implements HasDynamicTitle {
     protected List<Component> getMenuItems() {
         Map<String, Class<? extends Component>> menuItemsMap = new LinkedHashMap<>();
         menuItemsMap.put("Startseite",MainView.class);
-        menuItemsMap.put("Treffer", TrefferView.class);
-        menuItemsMap.put("Mannschaft", MannschaftView.class);
+//        menuItemsMap.put("Treffer", TrefferView.class);
         menuItemsMap.put("Schiri", SchiriView.class);
-        menuItemsMap.put("Spiel", SpielView.class);
         menuItemsMap.put("Spieler", SpielerView.class);
         menuItemsMap.put("Vertrag", VertragView.class);
+        menuItemsMap.put("Mannschaft", MannschaftView.class);
+        menuItemsMap.put("Spiel", SpielView.class);
 
         return createAllowedRouterLinks(menuItemsMap);
     }

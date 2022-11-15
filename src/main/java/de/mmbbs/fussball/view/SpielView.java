@@ -9,6 +9,7 @@ import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.littemplate.LitTemplate;
 import com.vaadin.flow.component.template.Id;
 import com.vaadin.flow.router.Route;
+import de.mmbbs.fussball.model.Spiel;
 
 /**
  * A Designer generated component for the spiel-view template.
@@ -22,7 +23,7 @@ import com.vaadin.flow.router.Route;
 public class SpielView extends LitTemplate {
 
     @Id("daGriddy")
-    private Grid daGriddy;
+    private Grid<Spiel> daGriddy;
     @Id("comboboxHeim")
     private ComboBox<String> comboboxHeim;
     @Id("buttonSpeichern")

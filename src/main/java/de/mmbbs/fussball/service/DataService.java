@@ -1,8 +1,7 @@
 package de.mmbbs.fussball.service;
 
 import de.mmbbs.fussball.Repository.*;
-import de.mmbbs.fussball.model.Schiri;
-import de.mmbbs.fussball.model.Treffer;
+import de.mmbbs.fussball.model.*;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -43,7 +42,27 @@ public class DataService {
         return schiriRepository.findAll();
     }
 
+    public List<Spieler> getAllSpieler() {
+        return spielerRepository.findAll();
+    }
+
     public void saveSchiri(Schiri neuerSchiri) {
         schiriRepository.save(neuerSchiri);
+    }
+
+    public void saveSpieler(Spieler spieler) {
+        spielerRepository.save(spieler);
+    }
+
+    public List<Mannschaft> getAllMannschaft() {
+        return mannschaftRepository.findAll();
+    }
+
+    public void saveMannschaft(Mannschaft mannschaft) {
+        mannschaftRepository.save(mannschaft);
+    }
+
+    public List<Vertrag> getAllVertrag() {
+        return vertragRepository.findAll();
     }
 }

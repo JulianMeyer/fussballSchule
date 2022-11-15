@@ -9,32 +9,50 @@ import com.vaadin.flow.component.littemplate.LitTemplate;
 import com.vaadin.flow.component.template.Id;
 import com.vaadin.flow.component.textfield.NumberField;
 import com.vaadin.flow.router.Route;
+import de.mmbbs.fussball.model.Spieler;
+import de.mmbbs.fussball.model.Vertrag;
+import de.mmbbs.fussball.service.DataService;
 
 /**
  * A Designer generated component for the vertrag-view template.
- *
+ * <p>
  * Designer will add and remove fields with @Id mappings but
  * does not overwrite or otherwise change this file.
  */
 @Tag("vertrag-view")
 @JsModule("./vertrag-view.ts")
-@Route(value = "vertrag",layout = MainView.class)
+@Route(value = "vertrag", layout = MainView.class)
 public class VertragView extends LitTemplate {
 
     @Id("buttonSpeichern")
     private Button buttonSpeichern;
     @Id("comboboxSpieler")
-    private ComboBox<String> comboboxSpieler;
+    private ComboBox<Spieler> comboboxSpieler;
     @Id("numberfieldGehalt")
     private NumberField numberfieldGehalt;
     @Id("daGriddy")
-    private Grid daGriddy;
+    private Grid<Vertrag> daGriddy;
+    DataService dataService;
 
-    /**
-     * Creates a new VertragView.
-     */
-    public VertragView() {
-        // You can initialise any data required for the connected UI components here.
+    public VertragView(DataService dataService) {
+        this.dataService = dataService;
+        init();
+        comboboxSpieler.setItemLabelGenerator(Spieler::getName);
+
+        buttonSpeichern.addClickListener(buttonClickEvent -> speichernVertrag());
+    }
+
+    private void speichernVertrag() {
+        Vertrag vertrag = new Vertrag();
+        vertrag.setGehalt(numberfieldGehalt.getValue());
+        vertrag.setSpieler(comboboxSpieler.getValue());
+
+    }
+
+    private void init() {
+        daGriddy.setItems(dataService.getAllVertrag());
+        comboboxSpieler.setItems(dataService.getAllSpieler());
+
     }
 
 }

@@ -5,11 +5,10 @@ import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.littemplate.LitTemplate;
-import com.vaadin.flow.component.notification.Notification;
-import com.vaadin.flow.component.notification.NotificationVariant;
 import com.vaadin.flow.component.template.Id;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
+import de.mmbbs.fussball.NotificationManager;
 import de.mmbbs.fussball.model.Schiri;
 import de.mmbbs.fussball.service.DataService;
 
@@ -49,13 +48,9 @@ public class SchiriView extends LitTemplate {
         if (isValid(neuerSchiri)) {
             dataService.saveSchiri(neuerSchiri);
             refreshPage();
-            Notification notification = Notification
-                    .show("Schiri Hinzugefügt!");
-            notification.addThemeVariants(NotificationVariant.LUMO_SUCCESS);
+            NotificationManager.notificationSuccessAtSaving("Schiri");
         } else {
-            Notification notification = Notification
-                    .show("Fehler beim Speichern!");
-            notification.addThemeVariants(NotificationVariant.LUMO_ERROR);
+            NotificationManager.notificationFailureAtSaving();
         }
     }
 

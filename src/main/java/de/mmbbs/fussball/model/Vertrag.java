@@ -16,7 +16,7 @@ public class Vertrag {
     @Column(name = "ID", nullable = false, unique = true)
     int id;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "spieler_id")
     Spieler spieler;
 

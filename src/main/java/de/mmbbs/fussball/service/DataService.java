@@ -65,4 +65,12 @@ public class DataService {
     public List<Vertrag> getAllVertrag() {
         return vertragRepository.findAll();
     }
+
+    public void saveTreffer(List<Treffer> trefferList) {
+        trefferRepository.saveAll(trefferList);
+    }
+
+    public void saveVertrag(Vertrag vertrag) {
+        vertragRepository.save(vertrag);
+    }
 }

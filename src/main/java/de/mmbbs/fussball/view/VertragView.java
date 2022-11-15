@@ -9,6 +9,7 @@ import com.vaadin.flow.component.littemplate.LitTemplate;
 import com.vaadin.flow.component.template.Id;
 import com.vaadin.flow.component.textfield.NumberField;
 import com.vaadin.flow.router.Route;
+import de.mmbbs.fussball.NotificationManager;
 import de.mmbbs.fussball.model.Spieler;
 import de.mmbbs.fussball.model.Vertrag;
 import de.mmbbs.fussball.service.DataService;
@@ -36,9 +37,10 @@ public class VertragView extends LitTemplate {
 
     public VertragView(DataService dataService) {
         this.dataService = dataService;
+        daGriddy.addColumn(vertrag -> vertrag.getSpieler().getName()).setHeader("Spieler");
+        daGriddy.addColumn(Vertrag::getGehalt).setHeader("Gehalt");
         init();
         comboboxSpieler.setItemLabelGenerator(Spieler::getName);
-
         buttonSpeichern.addClickListener(buttonClickEvent -> speichernVertrag());
     }
 
@@ -46,13 +48,33 @@ public class VertragView extends LitTemplate {
         Vertrag vertrag = new Vertrag();
         vertrag.setGehalt(numberfieldGehalt.getValue());
         vertrag.setSpieler(comboboxSpieler.getValue());
+        if (isValid(vertrag)) {
+            dataService.saveVertrag(vertrag);
+            refresh();
+            init();
+            NotificationManager.notificationSuccessAtSaving("Vertrag");
+        } else {
+            NotificationManager.notificationFailureAtSaving();
+        }
+    }
+
+    private void refresh() {
+        comboboxSpieler.clear();
+        numberfieldGehalt.clear();
+    }
+
+    private boolean isValid(Vertrag vertrag) {
+        if (vertrag.getSpieler() == null || vertrag.getGehalt() < 0.0) {
+            return false;
+        } else {
+            return true;
+        }
 
     }
 
     private void init() {
         daGriddy.setItems(dataService.getAllVertrag());
         comboboxSpieler.setItems(dataService.getAllSpieler());
-
     }
 
 }

@@ -29,7 +29,7 @@ public class Spieler {
     @Column(name = "ELFMETER_GEHALTEN")
     int elfmeterGehalten;
 
-    @OneToMany
+    @OneToMany( fetch = FetchType.EAGER)
     List<Treffer> treffer;
 
     public int getTrefferanzahl() {

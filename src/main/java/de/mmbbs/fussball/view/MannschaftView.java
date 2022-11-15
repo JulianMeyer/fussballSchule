@@ -5,11 +5,10 @@ import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.littemplate.LitTemplate;
-import com.vaadin.flow.component.notification.Notification;
-import com.vaadin.flow.component.notification.NotificationVariant;
 import com.vaadin.flow.component.template.Id;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
+import de.mmbbs.fussball.NotificationManager;
 import de.mmbbs.fussball.model.Mannschaft;
 import de.mmbbs.fussball.model.Vertrag;
 import de.mmbbs.fussball.service.DataService;
@@ -58,13 +57,9 @@ public class MannschaftView extends LitTemplate {
         if (isValid(mannschaft)) {
             dataService.saveMannschaft(mannschaft);
             init();
-            Notification notification = Notification
-                    .show("Mannschaft Hinzugefügt!");
-            notification.addThemeVariants(NotificationVariant.LUMO_SUCCESS);
+            NotificationManager.notificationSuccessAtSaving("Mannschaft");
         } else {
-            Notification notification = Notification
-                    .show("Fehler beim Speichern!");
-            notification.addThemeVariants(NotificationVariant.LUMO_ERROR);
+            NotificationManager.notificationFailureAtSaving();
         }
     }
 

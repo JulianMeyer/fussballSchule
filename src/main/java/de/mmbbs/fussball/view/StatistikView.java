@@ -18,6 +18,7 @@ import de.mmbbs.fussball.service.DataService;
 
 import javax.annotation.PostConstruct;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 /**
@@ -54,7 +55,7 @@ public class StatistikView extends LitTemplate {
 
     public StatistikView(DataService dataService) {
         this.dataService = dataService;
-        comboSpielauswahl.getStyle().set("--vaadin-combo-box-overlay-width", "450px");
+        comboSpielauswahl.getStyle().set("--vaadin-combo-box-overlay-width", "500px");
         comboSpielauswahl.setItemLabelGenerator(spiel ->
                 spiel.getHeim().getName() + " "
                         + spiel.getAuswaerts().getName() + " "
@@ -86,25 +87,35 @@ public class StatistikView extends LitTemplate {
     }
 
     private void ergebnisGenerieren(Spiel value) {
+
+        //auslesen der Spieler aus dem Spiel
+
         List<Vertrag> vertragList = value.getHeim().getVertragList();
         List<Spieler> spielerListHeim = new ArrayList<>();
-        for (Vertrag vertrag : vertragList) {
+        for (Vertrag vertrag : new HashSet<>(vertragList)) {
             Spieler spieler = vertrag.getSpieler();
             spielerListHeim.add(spieler);
         }
 
         List<Vertrag> vertragList2 = value.getAuswaerts().getVertragList();
         List<Spieler> spielerListAusw = new ArrayList<>();
-        for (Vertrag vertrag : vertragList2) {
+        for (Vertrag vertrag : new HashSet<>(vertragList2)) {
             Spieler spieler = vertrag.getSpieler();
-            spielerListHeim.add(spieler);
+            spielerListAusw.add(spieler);
         }
+
+        //setzen der SPieler in die grids
 
         gridHeim.setItems(spielerListHeim);
         gridAusw.setItems(spielerListAusw);
-        labelHeimName.setText(value.getHeim().getName());
-        labelAuswName.setText(value.getAuswaerts().getName());
-        labelErgebnis.setText("Test");
+
+        //Label anpassen
+        labelHeimName.setText(value.getHeim().getName() +
+                ":" + "                   Schiedsrichter: " + value.getSchiri().getName());
+        labelAuswName.setText(value.getAuswaerts().getName() + ":");
+
+
+        //TrefferListen auslesehen
 
         List<Treffer> trefferListHeim = new ArrayList<>();
         for (Spieler spieler : spielerListHeim) {
@@ -116,9 +127,36 @@ public class StatistikView extends LitTemplate {
             trefferListAusw.addAll(spieler.getTreffer());
         }
 
+        //wieder ins Grid packen
+
         heimTrefferGrid.setItems(trefferListHeim);
         auswTrefferGrid.setItems(trefferListAusw);
+
+        labelErgebnis.setText(getErgebnis(trefferListHeim, trefferListAusw));
         setErgebnisVisability(true);
+    }
+
+    private String getErgebnis(List<Treffer> trefferListHeim, List<Treffer> trefferListAusw) {
+        int heim = 0;
+        int ausw = 0;
+
+        for (Treffer trefferHeim : trefferListHeim) {
+            if (trefferHeim.isEigentor()) {
+                ausw += 1;
+            } else {
+                heim += 1;
+            }
+        }
+        for (Treffer trefferAusw : trefferListAusw) {
+            if (trefferAusw.isEigentor()) {
+                heim += 1;
+            } else {
+                ausw += 1;
+            }
+        }
+
+
+        return String.format("%s : %d", heim, ausw);
     }
 
     @PostConstruct

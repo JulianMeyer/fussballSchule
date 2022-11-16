@@ -38,24 +38,34 @@ public class MannschaftView extends LitTemplate {
     @Id("buttonSpeichern")
     private Button buttonSpeichern;
     DataService dataService;
-    List<Vertrag> vertragList = new ArrayList<>();
     @Id("GridVertrag")
     private Grid<Vertrag> gridVertrag;
+    List<Vertrag> vertragList = new ArrayList<>();
 
     public MannschaftView(DataService dataService) {
         this.dataService = dataService;
 
         daGriddy.addColumn(Mannschaft::getName).setHeader("Mannschaftsname");
         daGriddy.addColumn(Mannschaft::getVertragAnzahl).setHeader("Spieler unter Vertrag");
+        daGriddy.addItemClickListener(event -> {
+            textFieldName.setValue(event.getItem().getName());
+            vertragList = event.getItem().getVertragList();
+        });
+        daGriddy.addItemDoubleClickListener(event -> {
+            dataService.deleteMannschaft(event.getItem());
+            init();
+        });
         gridVertrag.addColumn(vertrag -> vertrag.getSpieler().getName()).setHeader("Spieler");
         gridVertrag.addColumn(Vertrag::getGehalt).setHeader("Gehalt");
         gridVertrag.setSelectionMode(Grid.SelectionMode.MULTI);
         buttonHinzufügen.addClickListener(buttonClickEvent -> vertragHinzufuegen());
-        buttonSpeichern.addClickListener(buttonClickEvent -> mannschaftSpeichern());
+        buttonSpeichern.addClickListener(buttonClickEvent -> mannschaftSpeichern(daGriddy.asSingleSelect().getValue()));
     }
 
-    private void mannschaftSpeichern() {
-        Mannschaft mannschaft = new Mannschaft();
+    private void mannschaftSpeichern(Mannschaft mannschaft) {
+        if (mannschaft == null) {
+            mannschaft = new Mannschaft();
+        }
         mannschaft.setName(textFieldName.getValue());
         mannschaft.setVertragList(vertragList);
 

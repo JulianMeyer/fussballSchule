@@ -37,16 +37,25 @@ public class SchiriView extends LitTemplate {
     public SchiriView(DataService dataService) {
         this.dataService = dataService;
         daGriddy.addColumn(Schiri::getName);
-        buttonSpeichern.addClickListener(buttonClickEvent -> speichern());
+        daGriddy.addItemClickListener(event -> {
+            textFieldName.setValue(event.getItem().getName());
+        });
+        daGriddy.addItemDoubleClickListener(event -> {
+            dataService.deleteSchiri(event.getItem());
+            init();
+        });
+        buttonSpeichern.addClickListener(buttonClickEvent -> speichern(daGriddy.asSingleSelect().getValue()));
     }
 
-    private void speichern() {
-        Schiri neuerSchiri = new Schiri();
+    private void speichern(Schiri schiri) {
+        if (schiri == null) {
+            schiri = new Schiri();
+        }
         String fieldNameValue = textFieldName.getValue();
-        neuerSchiri.setName(fieldNameValue);
+        schiri.setName(fieldNameValue);
 
-        if (isValid(neuerSchiri)) {
-            dataService.saveSchiri(neuerSchiri);
+        if (isValid(schiri)) {
+            dataService.saveSchiri(schiri);
             refreshPage();
             NotificationManager.notificationSuccessAtSaving("Schiri");
         } else {

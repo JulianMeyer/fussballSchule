@@ -86,4 +86,24 @@ public class DataService {
     public Optional<Mannschaft> getMannschaft(Mannschaft mannschaft) {
         return mannschaftRepository.findById((long) mannschaft.getId());
     }
+
+    public void deleteMannschaft(Mannschaft mannschaft) {
+        mannschaftRepository.delete(mannschaft);
+    }
+
+    public void deleteSchiri(Schiri schiri) {
+        schiriRepository.delete(schiri);
+    }
+
+    public void deleteVertrag(Vertrag vertrag) {
+        vertragRepository.delete(vertrag);
+    }
+
+    public void deleteSpieler(Spieler spieler) {
+        spielerRepository.delete(spieler);
+    }
+
+    public void deleteSpiel(Spiel spiel) {
+        spielRepository.delete(spiel);
+    }
 }

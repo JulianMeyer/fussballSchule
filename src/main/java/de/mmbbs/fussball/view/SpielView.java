@@ -47,18 +47,30 @@ public class SpielView extends LitTemplate {
     public SpielView(DataService dataService) {
         this.dataService = dataService;
         init();
-        buttonSpeichern.addClickListener(buttonClickEvent -> speichern());
+        buttonSpeichern.addClickListener(buttonClickEvent -> speichern(daGriddy.asSingleSelect().getValue()));
         daGriddy.addColumn(Spiel::getDate).setHeader("Datum");
         daGriddy.addColumn(spiel -> spiel.getAuswaerts().getName()).setHeader("Auswärts-Mannschaft");
         daGriddy.addColumn(spiel -> spiel.getHeim().getName()).setHeader("Heim-Mannschaft");
         daGriddy.addColumn(spiel -> spiel.getSchiri().getName()).setHeader("Schiedsrichter");
+        daGriddy.addItemClickListener(event -> {
+            datepicker.setValue(event.getItem().getDate().toLocalDate());
+            comboboxAusw.setValue(event.getItem().getAuswaerts());
+            comboboxHeim.setValue(event.getItem().getHeim());
+            schiribox.setValue(event.getItem().getSchiri());
+        });
+        daGriddy.addItemDoubleClickListener(event -> {
+            dataService.deleteSpiel(event.getItem());
+            init();
+        });
         comboboxAusw.setItemLabelGenerator(Mannschaft::getName);
         comboboxHeim.setItemLabelGenerator(Mannschaft::getName);
         schiribox.setItemLabelGenerator(Schiri::getName);
     }
 
-    private void speichern() {
-        Spiel spiel = new Spiel();
+    private void speichern(Spiel spiel) {
+        if (spiel == null) {
+            spiel = new Spiel();
+        }
         if (datepicker.getValue() != null) {
             spiel.setDate(Date.valueOf(datepicker.getValue()));
         }

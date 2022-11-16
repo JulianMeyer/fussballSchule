@@ -55,19 +55,32 @@ public class SpielerView extends LitTemplate {
     public SpielerView(DataService dataService) {
         this.dataService = dataService;
         buttonHinzufügen.addClickListener(buttonClickEvent -> hinzufuegenTreffer());
-        buttonSpeichern.addClickListener(buttonClickEvent -> speichernSpieler());
+        buttonSpeichern.addClickListener(buttonClickEvent -> speichernSpieler(daGriddy.asSingleSelect().getValue()));
         init();
         daGriddy.addColumn(Spieler::getName).setHeader("Name");
         daGriddy.addColumn(Spieler::getTrikotnummer).setHeader("Trikotnummer");
         daGriddy.addColumn(Spieler::getPosition).setHeader("Position");
         daGriddy.addColumn(Spieler::getTrefferanzahl).setHeader("Trefferanzahl");
         daGriddy.addColumn(Spieler::getElfmeterGehalten).setHeader("Elfmeter gehalten");
+        daGriddy.addItemClickListener(event -> {
+            textFieldSpieler.setValue(event.getItem().getName());
+            trikotnummer.setValue((double) event.getItem().getTrikotnummer());
+            position.setValue(event.getItem().getPosition());
+            elfmeter.setValue((double) event.getItem().getElfmeterGehalten());
+            trefferList = event.getItem().getTreffer();
+        });
+        daGriddy.addItemDoubleClickListener(event -> {
+            dataService.deleteSpieler(event.getItem());
+            init();
+        });
         position.setItems("Stürmer", "Mittelfeld", "Defensive", "Torwart");
         position.setAllowCustomValue(false);
     }
 
-    private void speichernSpieler() {
-        Spieler spieler = new Spieler();
+    private void speichernSpieler(Spieler spieler) {
+        if (spieler == null) {
+            spieler = new Spieler();
+        }
         spieler.setName(textFieldSpieler.getValue());
         if (elfmeter.getValue() != null) {
             spieler.setElfmeterGehalten(elfmeter.getValue().intValue());

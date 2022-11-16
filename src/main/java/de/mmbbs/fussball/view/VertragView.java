@@ -41,6 +41,14 @@ public class VertragView extends LitTemplate {
         this.dataService = dataService;
         daGriddy.addColumn(vertrag -> vertrag.getSpieler().getName()).setHeader("Spieler");
         daGriddy.addColumn(Vertrag::getGehalt).setHeader("Gehalt");
+        daGriddy.addItemClickListener(event -> {
+            numberfieldGehalt.setValue(event.getItem().getGehalt());
+            comboboxSpieler.setValue(event.getItem().getSpieler());
+        });
+        daGriddy.addItemDoubleClickListener(event -> {
+            dataService.deleteVertrag(event.getItem());
+            init();
+        });
         comboboxSpieler.setItemLabelGenerator(Spieler::getName);
         buttonSpeichern.addClickListener(buttonClickEvent -> speichernVertrag());
     }

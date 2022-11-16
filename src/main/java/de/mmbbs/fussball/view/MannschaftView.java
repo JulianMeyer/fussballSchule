@@ -34,7 +34,7 @@ public class MannschaftView extends LitTemplate {
     @Id("daGriddy")
     private Grid<Mannschaft> daGriddy;
     @Id("buttonHinzufügen")
-    private Button buttonHinzufügen;
+    private Button buttonHinzufuegen;
     @Id("buttonSpeichern")
     private Button buttonSpeichern;
     DataService dataService;
@@ -58,7 +58,7 @@ public class MannschaftView extends LitTemplate {
         gridVertrag.addColumn(vertrag -> vertrag.getSpieler().getName()).setHeader("Spieler");
         gridVertrag.addColumn(Vertrag::getGehalt).setHeader("Gehalt");
         gridVertrag.setSelectionMode(Grid.SelectionMode.MULTI);
-        buttonHinzufügen.addClickListener(buttonClickEvent -> vertragHinzufuegen());
+        buttonHinzufuegen.addClickListener(buttonClickEvent -> vertragHinzufuegen());
         buttonSpeichern.addClickListener(buttonClickEvent -> mannschaftSpeichern(daGriddy.asSingleSelect().getValue()));
     }
 

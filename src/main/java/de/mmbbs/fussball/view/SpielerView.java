@@ -34,7 +34,7 @@ public class SpielerView extends LitTemplate {
     @Id("trikotnummer")
     private NumberField trikotnummer;
     @Id("buttonHinzufügen")
-    private Button buttonHinzufügen;
+    private Button buttonHinzufuegen;
     @Id("checkboxTreffer")
     private Checkbox checkboxTreffer;
     @Id("minute")
@@ -54,7 +54,7 @@ public class SpielerView extends LitTemplate {
 
     public SpielerView(DataService dataService) {
         this.dataService = dataService;
-        buttonHinzufügen.addClickListener(buttonClickEvent -> hinzufuegenTreffer());
+        buttonHinzufuegen.addClickListener(buttonClickEvent -> hinzufuegenTreffer());
         buttonSpeichern.addClickListener(buttonClickEvent -> speichernSpieler(daGriddy.asSingleSelect().getValue()));
         init();
         daGriddy.addColumn(Spieler::getName).setHeader("Name");

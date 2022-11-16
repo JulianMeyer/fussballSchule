@@ -14,6 +14,8 @@ import de.mmbbs.fussball.model.Spieler;
 import de.mmbbs.fussball.model.Vertrag;
 import de.mmbbs.fussball.service.DataService;
 
+import javax.annotation.PostConstruct;
+
 /**
  * A Designer generated component for the vertrag-view template.
  * <p>
@@ -39,7 +41,6 @@ public class VertragView extends LitTemplate {
         this.dataService = dataService;
         daGriddy.addColumn(vertrag -> vertrag.getSpieler().getName()).setHeader("Spieler");
         daGriddy.addColumn(Vertrag::getGehalt).setHeader("Gehalt");
-        init();
         comboboxSpieler.setItemLabelGenerator(Spieler::getName);
         buttonSpeichern.addClickListener(buttonClickEvent -> speichernVertrag());
     }
@@ -72,6 +73,7 @@ public class VertragView extends LitTemplate {
 
     }
 
+    @PostConstruct
     private void init() {
         daGriddy.setItems(dataService.getAllVertrag());
         comboboxSpieler.setItems(dataService.getAllSpieler());

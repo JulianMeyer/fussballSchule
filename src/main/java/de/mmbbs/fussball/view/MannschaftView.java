@@ -13,6 +13,7 @@ import de.mmbbs.fussball.model.Mannschaft;
 import de.mmbbs.fussball.model.Vertrag;
 import de.mmbbs.fussball.service.DataService;
 
+import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -49,7 +50,6 @@ public class MannschaftView extends LitTemplate {
         gridVertrag.addColumn(vertrag -> vertrag.getSpieler().getName()).setHeader("Spieler");
         gridVertrag.addColumn(Vertrag::getGehalt).setHeader("Gehalt");
         gridVertrag.setSelectionMode(Grid.SelectionMode.MULTI);
-        init();
         buttonHinzufügen.addClickListener(buttonClickEvent -> vertragHinzufuegen());
         buttonSpeichern.addClickListener(buttonClickEvent -> mannschaftSpeichern());
     }
@@ -82,6 +82,7 @@ public class MannschaftView extends LitTemplate {
         }
     }
 
+    @PostConstruct
     private void init() {
         daGriddy.setItems(dataService.getAllMannschaft());
         gridVertrag.setItems(dataService.getAllVertrag());

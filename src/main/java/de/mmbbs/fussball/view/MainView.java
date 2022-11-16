@@ -89,6 +89,7 @@ public class MainView extends AppLayout implements HasDynamicTitle {
         menuItemsMap.put("Vertrag", VertragView.class);
         menuItemsMap.put("Mannschaft", MannschaftView.class);
         menuItemsMap.put("Spiel", SpielView.class);
+        menuItemsMap.put("Statistik", StatistikView.class);
 
         return createAllowedRouterLinks(menuItemsMap);
     }

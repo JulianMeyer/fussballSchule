@@ -15,6 +15,7 @@ import de.mmbbs.fussball.model.Schiri;
 import de.mmbbs.fussball.model.Spiel;
 import de.mmbbs.fussball.service.DataService;
 
+import javax.annotation.PostConstruct;
 import java.sql.Date;
 
 /**
@@ -90,6 +91,7 @@ public class SpielView extends LitTemplate {
         }
     }
 
+    @PostConstruct
     private void init() {
         comboboxHeim.setItems(dataService.getAllMannschaft());
         comboboxAusw.setItems(dataService.getAllMannschaft());

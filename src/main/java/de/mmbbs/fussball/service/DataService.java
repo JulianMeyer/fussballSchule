@@ -5,6 +5,7 @@ import de.mmbbs.fussball.model.*;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class DataService {
@@ -80,5 +81,9 @@ public class DataService {
 
     public void saveSpiel(Spiel spiel) {
         spielRepository.save(spiel);
+    }
+
+    public Optional<Mannschaft> getMannschaft(Mannschaft mannschaft) {
+        return mannschaftRepository.findById((long) mannschaft.getId());
     }
 }

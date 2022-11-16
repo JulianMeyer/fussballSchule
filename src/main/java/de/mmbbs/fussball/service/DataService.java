@@ -73,4 +73,12 @@ public class DataService {
     public void saveVertrag(Vertrag vertrag) {
         vertragRepository.save(vertrag);
     }
+
+    public List<Spiel> getAllSpiel() {
+        return spielRepository.findAll();
+    }
+
+    public void saveSpiel(Spiel spiel) {
+        spielRepository.save(spiel);
+    }
 }
